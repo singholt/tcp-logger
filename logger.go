@@ -23,6 +23,7 @@ const (
 	defaultRequestAck           = false
 	defaultIsAsync              = true
 	defaultIsSubSecondPrecision = true
+	defaultBufferLimit          = 1024 * 1024
 )
 
 var (
@@ -109,6 +110,7 @@ func initLogger() error {
 		RequestAck:         requestAck,
 		Async:              isAsync,
 		SubSecondPrecision: isSubSecondPrecision,
+		BufferLimit:        defaultBufferLimit,
 	})
 	return err
 }
