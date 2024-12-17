@@ -52,11 +52,16 @@ The logger application accepts the following command-line arguments:
     - Default: false
     - Usage: `-help`
 
-Note: All the above arguments are optional!
+9. `-requestAck` (bool)
+   - Description: Enables or disables Fluent request-ack option.
+   - Default: false
+   - Usage: `-requestAck=<true|false>`
+
+All the above arguments are optional!
 
 ## Example usage
 ```
-./logger -host="localhost" -port=24224 -steadyRate=1000 -burst=0 -time=2 -async=false -subSecond=true
+./logger -host="localhost" -port=24224 -steadyRate=1000 -burst=0 -time=2 -async=false -subSecond=true -requestAck=true
 ```
 
 To view the app usage information, run:

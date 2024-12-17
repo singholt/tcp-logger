@@ -20,6 +20,7 @@ const (
 	defaultSteadyRate           = 10000
 	defaultBurst                = 0
 	defaultTime                 = 1
+	defaultRequestAck           = false
 	defaultIsAsync              = true
 	defaultIsSubSecondPrecision = true
 )
@@ -34,6 +35,7 @@ var (
 	steadyRate           int
 	burst                int
 	timeInMinutes        int
+	requestAck           bool
 	isAsync              bool
 	isSubSecondPrecision bool
 	printUsage           bool
@@ -90,6 +92,7 @@ func parseArgs() {
 	flag.IntVar(&steadyRate, "steadyRate", defaultSteadyRate, "Steady state rate")
 	flag.IntVar(&burst, "burst", defaultBurst, "Burst value")
 	flag.IntVar(&timeInMinutes, "time", defaultTime, "Time in minutes")
+	flag.BoolVar(&requestAck, "requestAck", defaultRequestAck, "Whether Fluent request-ack option is enabled")
 	flag.BoolVar(&isAsync, "async", defaultIsAsync, "Whether Fluent Async mode is enabled")
 	flag.BoolVar(&isSubSecondPrecision, "subSecond", defaultIsSubSecondPrecision,
 		"Whether Fluent Sub-second precision is enabled")
@@ -103,6 +106,7 @@ func initLogger() error {
 	logger, err = fluent.New(fluent.Config{
 		FluentHost:         fluentHost,
 		FluentPort:         fluentPort,
+		RequestAck:         requestAck,
 		Async:              isAsync,
 		SubSecondPrecision: isSubSecondPrecision,
 	})
