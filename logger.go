@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"math"
 	"net/http"
 	"os"
 	"strings"
@@ -24,6 +25,8 @@ const (
 	defaultIsAsync              = true
 	defaultIsSubSecondPrecision = true
 	defaultBufferLimit          = 1024 * 1024
+	defaultMaxRetries           = math.MaxInt32
+	defaultRetryWait            = 1000
 )
 
 var (
@@ -111,6 +114,8 @@ func initLogger() error {
 		Async:              isAsync,
 		SubSecondPrecision: isSubSecondPrecision,
 		BufferLimit:        defaultBufferLimit,
+		MaxRetry:           defaultMaxRetries,
+		RetryWait:          defaultRetryWait,
 	})
 	return err
 }
